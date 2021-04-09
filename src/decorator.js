@@ -119,3 +119,70 @@ var Product = /** @class */ (function () {
     ], Product.prototype, "getPriceWithTax");
     return Product;
 }());
+// function AutoBind(_: any, _2: string, descriptor: PropertyDescriptor) {
+//   const originalMethod = descriptor.value;
+//   const adjDescriptor: PropertyDescriptor = {
+//     configurable: true,
+//     enumerable: false,
+//     get() {
+//       const boundFn = originalMethod.bind(this);
+//       return boundFn;
+//     },
+//   };
+//   return adjDescriptor;
+// }
+// class Printer {
+//   message = "This works!";
+//   @Autobind
+//   showMessage() {
+//     console.log(this.message);
+//   }
+// }
+// const p = new Printer();
+// const button = document.querySelector("button")!;
+// button.addEventListener("click", p.showMessage);
+function Autobind(_, _2, descriptor) {
+    var originalMethod = descriptor.value;
+    var adjDescriptor = {
+        configurable: true,
+        enumerable: false,
+        get: function () {
+            var boundFn = originalMethod.bind(this);
+            return boundFn;
+        }
+    };
+    return adjDescriptor;
+}
+var Printer = /** @class */ (function () {
+    function Printer() {
+        this.message = "This works!";
+    }
+    Printer.prototype.showMessage = function () {
+        console.log(this.message);
+    };
+    __decorate([
+        Autobind
+    ], Printer.prototype, "showMessage");
+    return Printer;
+}());
+var p = new Printer();
+p.showMessage();
+var button = document.querySelector("button");
+button.addEventListener("click", p.showMessage);
+var Course = /** @class */ (function () {
+    function Course(t, p) {
+        this.title = t;
+        this.price = p;
+    }
+    return Course;
+}());
+var CourseForm = document.querySelector('form');
+CourseForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var titleEl = document.getElementById('title');
+    var priceEl = document.getElementById('price');
+    var title = titleEl.value;
+    var price = +priceEl.value;
+    var createdCourse = new Course(title, price);
+    console.log(createdCourse);
+});
