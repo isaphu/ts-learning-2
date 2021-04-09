@@ -1,36 +1,48 @@
 // const names: Array<string> = []; // string[]
 // // names[0].split(' ');
-// const promise: Promise<number> = new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     resolve(10);
-//   }, 2000);
-// });
-// promise.then(data => {
-//   // data.split(' ');
-// })
-// function merge<T extends object, U extends object>(objA: T, objB: U) {
-//   return Object.assign(objA, objB);
-// }
-// const mergedObj = merge({ name: 'Max', hobbies: ['Sports'] }, { age: 30 });
-// console.log(mergedObj);
-// interface Lengthy {
-//   length: number;
-// }
-// function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
-//   let descriptionText = 'Got no value.';
-//   if (element.length === 1) {
-//     descriptionText = 'Got 1 element.';
-//   } else if (element.length > 1) {
-//     descriptionText = 'Got ' + element.length + ' elements.';
-//   }
-//   return [element, descriptionText];
-// }
-// console.log(countAndDescribe(['Sports', 'Cooking']));
-// function extractAndConvert<T extends object, U extends keyof T>(
-//   obj: T,
-//   key: U
-// ) {
-//   return 'Value: ' + obj[key];
-// }
-// extractAndConvert({ name: 'Max' }, 'name');
-console.log('isa');
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
+function countAndDescribe(element) {
+    var descriptionText = 'Got no value.';
+    if (element.length === 1) {
+        descriptionText = 'Got 1 element.';
+    }
+    else if (element.length > 1) {
+        descriptionText = 'Got ' + element.length + ' elements.';
+    }
+    return [element, descriptionText];
+}
+console.log(countAndDescribe(['Sports', 'Cooking']));
+function extractAndConvert(obj, key) {
+    return 'Value: ' + obj[key];
+}
+extractAndConvert({ name: 'Max' }, 'name');
+var DataStorage = /** @class */ (function () {
+    function DataStorage() {
+        this.data = [];
+    }
+    DataStorage.prototype.addItem = function (item) {
+        this.data.push(item);
+    };
+    DataStorage.prototype.removeItem = function (item) {
+        this.data.splice(this.data.indexOf(item), 1);
+    };
+    DataStorage.prototype.getItems = function () {
+        return __spreadArray([], this.data);
+    };
+    return DataStorage;
+}());
+var textStorage = new DataStorage();
+textStorage.addItem('Max');
+textStorage.addItem('Isa');
+console.log(textStorage);
+textStorage.removeItem('Isa');
+var numberStorage = new DataStorage();
+var objStorage = new DataStorage();
+objStorage.addItem({ name: 'Max' });
+objStorage.addItem({ name: 'Manu' });
+objStorage.removeItem({ name: 'Max' });
+console.log(objStorage.getItems);
