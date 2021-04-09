@@ -41,8 +41,14 @@ textStorage.addItem('Isa');
 console.log(textStorage);
 textStorage.removeItem('Isa');
 var numberStorage = new DataStorage();
-var objStorage = new DataStorage();
-objStorage.addItem({ name: 'Max' });
-objStorage.addItem({ name: 'Manu' });
-objStorage.removeItem({ name: 'Max' });
-console.log(objStorage.getItems);
+;
+function createCourseGoal(title, description, date) {
+    var CourseGoal = {};
+    CourseGoal.title = title;
+    CourseGoal.description = description;
+    CourseGoal.completeUtil = date;
+    return CourseGoal;
+}
+;
+var names = ['Jack', 'Phu'];
+// names.push('Manu');

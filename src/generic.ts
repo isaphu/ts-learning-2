@@ -67,9 +67,30 @@ textStorage.removeItem('Isa')
 
 const numberStorage = new DataStorage<number>();
 
-const objStorage = new DataStorage<object>();
-objStorage.addItem({name: 'Max'});
-objStorage.addItem({name: 'Manu'})
+// const objStorage = new DataStorage<object>();
+// objStorage.addItem({name: 'Max'});
+// objStorage.addItem({name: 'Manu'})
 
-objStorage.removeItem({name: 'Max'})
-console.log(objStorage.getItems)
+// objStorage.removeItem({name: 'Max'})
+// console.log(objStorage.getItems)
+
+interface CourseGoal {
+    title: string;
+    description: string;
+    completeUtil: Date;
+};
+
+function createCourseGoal(
+    title: string,
+    description: string,
+    date: Date
+): CourseGoal {
+    let CourseGoal: Partial<CourseGoal> = {};
+    CourseGoal.title = title;
+    CourseGoal.description = description;
+    CourseGoal.completeUtil = date; 
+    return CourseGoal as CourseGoal;
+};
+
+const names: Readonly<string[]> = ['Jack', 'Phu'];
+// names.push('Manu');
