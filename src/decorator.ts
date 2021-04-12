@@ -148,8 +148,32 @@ p.showMessage();
 const button = document.querySelector("button")!;
 button.addEventListener("click", p.showMessage);
 
+interface ValidatorConfig {
+  [property: string]: {
+    [validatableProp: string]: string[];
+  };
+}
+
+const registeredValidators: ValidatorConfig = {};
+
+function Required(target: any, propName: string) {
+  registeredValidators[target.constructor.name] = {
+    [propName]: ["required"],
+  };
+}
+
+function PositiveNumber(target: any, propName: string) {
+  registeredValidators[target.constructor.name] = {
+    [propName]: ["positive"],
+  };
+}
+
+function validate(obj: object) {}
+
 class Course {
+  @Required
   title: string;
+  @PositiveNumber
   price: number;
 
   constructor(t: string, p: number) {
@@ -158,15 +182,15 @@ class Course {
   }
 }
 
-const CourseForm = document.querySelector('form')!;
-CourseForm.addEventListener('submit', event => {
-    event.preventDefault();
-    const titleEl = document.getElementById('title') as HTMLInputElement;
-    const priceEl =document.getElementById('price') as HTMLInputElement;
+const CourseForm = document.querySelector("form")!;
+CourseForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const titleEl = document.getElementById("title") as HTMLInputElement;
+  const priceEl = document.getElementById("price") as HTMLInputElement;
 
-    const title = titleEl.value;
-    const price = +priceEl.value;
+  const title = titleEl.value;
+  const price = +priceEl.value;
 
-    const createdCourse = new Course(title, price);
-    console.log(createdCourse)
-})
+  const createdCourse = new Course(title, price);
+  console.log(createdCourse);
+});
